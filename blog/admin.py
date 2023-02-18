@@ -19,5 +19,5 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'lead', 'body')
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'publish_time'
-    raw_id_fields = ('publish_time',)
+    raw_id_fields = ('author',)
 
