@@ -45,3 +45,5 @@ class Post(models.Model):
     class Meta:
         verbose_name = _('post')
         verbose_name_plural = _('posts')
+
+        ordering = ('-publish_time',)
