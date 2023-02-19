@@ -1,25 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
-    {% for post in posts %}
 
-        <div class="col-lg-4 mb-4">
-            <div class="custom-media d-block">
-                <div class="img mb-4">
-                    <a href="single.html"><img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid"></a>
-                </div>
-                <div class="text">
-                    <span class="meta">May 20, 2020</span>
-                    <h3 class="mb-4"><a href="#">{{ post.title }}</a></h3>
-                    <p>
-                        {{ post.lead }}
-                    </p>
-                    <p><a href="#">Read more</a></p>
+{% block head %}
+    <div class="col-lg-5 mx-auto text-center">
+        <h1 class="text-white">Welcome to the SportBoom Blog!</h1>
+        <p>Statical, Data Driven Football Vision.</p>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-6 title-section">
+            <h2 class="heading">Latest Blog</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for post in posts %}
+
+            <div class="col-lg-4 mb-4">
+                <div class="custom-media d-block">
+                    <div class="img mb-4">
+                        <a href="single.html"><img src="{{ post.thumbnail.url }}" alt="Image" class="img-fluid"></a>
+                    </div>
+                    <div class="text">
+                        <span class="meta">May 20, 2020</span>
+                        <h3 class="mb-4"><a href="#">{{ post.title }}</a></h3>
+                        <p>
+                            {{ post.lead }}
+                        </p>
+                        <p>
+                            <a href="{% url 'blog:detail' post.publish_time.year post.publish_time.month post.publish_time.day post.slug %}">Read
+                                more</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-7 text-center">
+            <div class="custom-pagination">
+                <a href="#">1</a>
+                <span>2</span>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

@@ -30,7 +30,7 @@ class Post(models.Model):
     lead = models.CharField(verbose_name=_('lead'), max_length=1024, null=True, blank=True)
     body = models.TextField(verbose_name=_('body'))
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
-
+    thumbnail = models.ImageField(verbose_name=_('thumbnail'), null=True, upload_to='posts/')
     created = models.DateTimeField(verbose_name=_('created'), auto_now_add=True)
     updated = models.DateTimeField(verbose_name=_('updated'), auto_now=True)
 
