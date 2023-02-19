@@ -6,13 +6,13 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogProject.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogProject.settings')
 
     # Set settings :
-
-    env = os.environ.get('APP_ENV', 'development')
-    setting_path = 'blogProject.envs.' + env
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting_path)
+    #
+    # env = os.environ.get('APP_ENV', 'development')
+    # setting_path = 'blogProject.envs.' + env
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting_path)
 
     try:
         from django.core.management import execute_from_command_line
