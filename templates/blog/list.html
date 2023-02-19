@@ -5,6 +5,11 @@
     <title>List</title>
 </head>
 <body>
-    {{ posts }}
+    <ul>
+        {% for post in posts %}
+            <li><h3><a href="{% url 'blog:detail' post.publish_time.year post.publish_time.month post.publish_time.day post.slug %}">{{ post }}</a></h3></li>
+        {% endfor %}
+
+    </ul>
 </body>
 </html>
