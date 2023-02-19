@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>List</title>
-</head>
-<body>
-    <ul>
-        {% for post in posts %}
-            <li><h3><a href="{% url 'blog:detail' post.publish_time.year post.publish_time.month post.publish_time.day post.slug %}">{{ post }}</a></h3></li>
-        {% endfor %}
+{% extends 'base.html' %}
+{% load static %}
 
-    </ul>
-</body>
-</html>
+{% block content %}
+    {% for post in posts %}
+
+        <div class="col-lg-4 mb-4">
+            <div class="custom-media d-block">
+                <div class="img mb-4">
+                    <a href="single.html"><img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid"></a>
+                </div>
+                <div class="text">
+                    <span class="meta">May 20, 2020</span>
+                    <h3 class="mb-4"><a href="#">{{ post.title }}</a></h3>
+                    <p>
+                        {{ post.lead }}
+                    </p>
+                    <p><a href="#">Read more</a></p>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
