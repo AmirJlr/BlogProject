@@ -22,16 +22,16 @@
             <div class="col-lg-4 mb-4">
                 <div class="custom-media d-block">
                     <div class="img mb-4">
-                        <a href="single.html"><img src="{{ post.thumbnail.url }}" alt="Image" class="img-fluid"></a>
+                        <a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}" alt="Image" class="img-fluid"></a>
                     </div>
                     <div class="text">
-                        <span class="meta">May 20, 2020</span>
-                        <h3 class="mb-4"><a href="#">{{ post.title }}</a></h3>
+                        <span class="meta">{{ post.publish_time }}</span>
+                        <h3 class="mb-4"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                         <p>
                             {{ post.lead }}
                         </p>
                         <p>
-                            <a href="{% url 'blog:detail' post.publish_time.year post.publish_time.month post.publish_time.day post.slug %}">Read
+                            <a href="{{ post.get_absolute_url }}">Read
                                 more</a></p>
                     </div>
                 </div>
