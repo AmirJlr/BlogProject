@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from django.utils import timezone
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 
 from .models import Category, Post
+from .forms import ShareForm
 
 
 # Create your views here.
@@ -39,3 +40,19 @@ class PostDetailView(DetailView):
                                 publish_time__month=self.kwargs['month'],
                                 publish_time__day=self.kwargs['day'],
                                 slug=self.kwargs['slug'])
+
+
+class SharePost(View):
+    def get(self, request, pk):
+        form = ShareForm()
+        post = get_object_or_404(Post, pk=pk)
+        context = {
+            'form': form,
+            'post': post,
+        }
+        return render(request, 'blog/share.html', context)
+
+    def post(self, request, pk):
+        form = ShareForm(request.POST)
+        # send_email django Config
+        return redirect('blog:list')

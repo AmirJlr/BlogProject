@@ -9,6 +9,9 @@
     <div class="col-lg-9 mx-auto text-center">
         <h1 class="text-white">{{ post.title }}</h1>
         <p><span>{{ post.publish_time }}</span> <span class="mx-3">&bullet;</span> <span>by : {{ post.author }}</span>
+            -- <span><a
+                    href="{% url 'blog:share' post.pk %}">Share Post</a>
+            </span>
         </p>
     </div>
 {% endblock %}

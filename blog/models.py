@@ -56,3 +56,5 @@ class Post(models.Model):
         verbose_name_plural = _('posts')
 
         ordering = ('-publish_time',)
+
+
