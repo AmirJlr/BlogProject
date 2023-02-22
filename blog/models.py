@@ -58,3 +58,15 @@ class Post(models.Model):
         ordering = ('-publish_time',)
 
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name=_('post'))
+    name = models.CharField(verbose_name=_('name'), max_length=50)
+    email = models.EmailField(verbose_name=_('email'))
+    body = models.TextField(verbose_name=_('body'))
+    approved = models.BooleanField(verbose_name=_('approved'))
+
+    created = models.DateTimeField(verbose_name=_('created'), auto_now_add=True)
+    updated = models.DateTimeField(verbose_name=_('updated'), auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} comments on {self.post.title}"

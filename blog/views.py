@@ -3,8 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, View
 
-from .models import Category, Post
-from .forms import ShareForm
+from .models import Category, Post, Comment
+from .forms import ShareForm, CommentForm
 
 
 # Create your views here.
@@ -40,6 +40,12 @@ class PostDetailView(DetailView):
                                 publish_time__month=self.kwargs['month'],
                                 publish_time__day=self.kwargs['day'],
                                 slug=self.kwargs['slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data()
+        context['comments'] = Comment.objects.filter(post=self.get_object(), approved=True)
+        context['comment_form'] = CommentForm()
+        return context
 
 
 class SharePost(View):
